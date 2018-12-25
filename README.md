@@ -1,6 +1,6 @@
-# DevConnector
+# Encrypto
 
-> Small social network app built with the MERN stack. This is part of my "MERN Stack Front To Back" Udemy course
+> Small social network app built to connect environmentalist and concern citizens to help enforce environmental laws
 
 ## Quick Start
 
@@ -36,8 +36,7 @@ module.exports = {
 
 ### Author
 
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
+Luis Manzanero
 
 ### Version
 
