@@ -14,6 +14,10 @@ module.exports = function validatePostInput(data) {
     errors.text = 'Text field is required';
   }
 
+  // if(Validator.isMimeType(data.postImage)){
+  //   errors.text = "post image upload failed";
+  // }
+
   return {
     errors,
     isValid: isEmpty(errors)

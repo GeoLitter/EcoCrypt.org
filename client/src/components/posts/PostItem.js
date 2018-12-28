@@ -42,6 +42,9 @@ class PostItem extends Component {
               />
             </a>
             <br />
+            {/* <img
+            src={post.postImage}
+            /> */}
             <p className="text-center">{post.name}</p>
           </div>
           <div className="col-md-10">
