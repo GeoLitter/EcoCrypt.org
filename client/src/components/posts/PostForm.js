@@ -9,13 +9,13 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      postImage: null,
+      // postImage: null,
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onFileChange = this.onFileChange.bind(this);
+    // this.onFileChange = this.onFileChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -27,24 +27,25 @@ class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault(); 
     const { user } = this.props.auth;
+    // const fileData = new FormData(); 
+    // fileData.append('file', this.state.postImage, this.state.postImage.name)
       
     const newPost = {
       text: this.state.text,
-      postImage: this.state.postImage,
+      // postImage: this.state.postImage,
       name: user.name,
       avatar: user.avatar
     }; 
     
-  
 
     this.props.addPost(newPost);
-    this.setState({ text: '', postImage: null});
+    this.setState({ text: ''});
   }
 
-  onFileChange(e){
-    console.log(e.target.files[0]);
-    this.setState({postImage: e.target.files[0]});
-  }
+  // onFileChange(e){
+  //   console.log(e.target.files[0]);
+  //   this.setState({postImage: e.target.files[0]});
+  // }
 
   onChange(e) { 
     this.setState({ [e.target.name]: e.target.value });
@@ -90,7 +91,7 @@ class PostForm extends Component {
                               <span className="input-group-text" id="postImage">Upload</span>
                             </div>
                             <div className="custom-file">
-                              <input type="file" className="custom-file-input" name="postImage"  onChange={this.onFileChange}/>
+                              <input type="file" className="custom-file-input" name="postImage"/>
                               <label className="custom-file-label" htmlFor="postImage">Choose file</label>
                             </div>
                           </div>
