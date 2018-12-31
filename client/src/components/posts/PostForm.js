@@ -9,13 +9,11 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      // postImage: null,
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    // this.onFileChange = this.onFileChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -25,29 +23,21 @@ class PostForm extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
+
     const { user } = this.props.auth;
-    // const fileData = new FormData(); 
-    // fileData.append('file', this.state.postImage, this.state.postImage.name)
-      
+
     const newPost = {
       text: this.state.text,
-      // postImage: this.state.postImage,
       name: user.name,
       avatar: user.avatar
-    }; 
-    
+    };
 
     this.props.addPost(newPost);
-    this.setState({ text: ''});
+    this.setState({ text: '' });
   }
 
-  // onFileChange(e){
-  //   console.log(e.target.files[0]);
-  //   this.setState({postImage: e.target.files[0]});
-  // }
-
-  onChange(e) { 
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -76,7 +66,7 @@ class PostForm extends Component {
                     <div className="card card-info">
                       <div className="card-header bg-info text-white">Say Something....</div>
                       <div className="card-body">
-                        <form onSubmit={this.onSubmit} encType="multipart/form-data">
+                        <form onSubmit={this.onSubmit}>
                           <div className="form-group">
                             <TextAreaFieldGroup
                               placeholder="Create a post"
@@ -88,11 +78,11 @@ class PostForm extends Component {
                           </div>
                           <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                              <span className="input-group-text" id="postImage">Upload</span>
+                              <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
                             </div>
                             <div className="custom-file">
-                              <input type="file" className="custom-file-input" name="postImage"/>
-                              <label className="custom-file-label" htmlFor="postImage">Choose file</label>
+                              <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"/>>
+                              <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                             </div>
                           </div>
                           <button type="submit" className="btn btn-dark">
@@ -105,6 +95,7 @@ class PostForm extends Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>

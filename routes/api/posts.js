@@ -88,7 +88,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
     const newPost = new Post({
       text: req.body.text,
       name: req.body.name,
-      postImage: req.file.path,
+      // postImage: req.file.path,
       avatar: req.body.avatar,
       user: req.user.id
     });
