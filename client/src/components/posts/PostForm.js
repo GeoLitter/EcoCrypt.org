@@ -9,11 +9,13 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
+      postImage: null,
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.uploadHandler = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -26,15 +28,44 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
+    
+    let formData = new FormData();
+    formData.append('postImage', this.state.postImage); 
+     
 
     const newPost = {
       text: this.state.text,
+      postImage: this.state.postImage,
       name: user.name,
       avatar: user.avatar
     };
 
+
+    console.log(newPost);
+
+    return
+
     this.props.addPost(newPost);
     this.setState({ text: '' });
+  }
+
+  encodeImageFileAsURL(element) {
+    var file = element.target.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      console.log('RESULT', reader.result)
+      this.setState({
+        postImage: reader.result
+      })
+    }
+    reader.readAsDataURL(file);
+  }
+
+
+  uploadHandler(e){
+   this.setState({
+      postImage: e.target.files[0]
+   });
   }
 
   onChange(e) {
@@ -44,11 +75,13 @@ class PostForm extends Component {
   render() {
     const { errors } = this.state;
 
+    let thisPtr = this
+
     return (
       <div> 
       {/* <!-- New Post Modal Trigger --> */}
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          New Post
+          New Post 
         </button>
         {/* <!-- New Post Modal --> */}
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -66,7 +99,7 @@ class PostForm extends Component {
                     <div className="card card-info">
                       <div className="card-header bg-info text-white">Say Something....</div>
                       <div className="card-body">
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmit} encType='multipart/form-data'>
                           <div className="form-group">
                             <TextAreaFieldGroup
                               placeholder="Create a post"
@@ -81,8 +114,8 @@ class PostForm extends Component {
                               <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
                             </div>
                             <div className="custom-file">
-                              <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"/>>
-                              <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
+                              <input type="file" className="custom-file-input" onChange={thisPtr.encodeImageFileAsURL} />
+                              <label className="custom-file-label" >Choose file</label>
                             </div>
                           </div>
                           <button type="submit" className="btn btn-dark">

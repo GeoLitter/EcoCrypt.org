@@ -74,21 +74,23 @@ router.get('/:id', (req, res) => {
 // @route   POST api/posts
 // @desc    Create post
 // @access  Private
-router.post('/', passport.authenticate('jwt', { session: false }), upload.single('postImage'), (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-
-    console.log(req.body);
-     
-    // Check Validation
+router.post('/', passport.authenticate('jwt', { session: false }), upload.single('postImage'), (req, res, next) => {
+  const { errors, isValid } = validatePostInput(req.body);
+    
+  console.log('Got Request')
+  console.log(req.file)
+  
+  // Check Validation
     if (!isValid) {
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
-    }
+    }  
 
+    console.log(req.body);
     const newPost = new Post({
       text: req.body.text,
       name: req.body.name,
-      // postImage: req.file.path,
+      postImage: req.file != undefined ? req.file.path : undefined,
       avatar: req.body.avatar,
       user: req.user.id
     });
