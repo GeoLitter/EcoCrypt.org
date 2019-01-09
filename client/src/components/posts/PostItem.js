@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 
+
+//adding a comment
 class PostItem extends Component {
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -29,7 +31,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-
+     
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -42,6 +44,7 @@ class PostItem extends Component {
               />
             </a>
             <br />
+          <img src={post.postImage} alt=""/>
             <p className="text-center">{post.name}</p>
           </div>
           <div className="col-md-10">

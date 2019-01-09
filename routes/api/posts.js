@@ -2,6 +2,34 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
 
 // Post model
 const Post = require('../../models/Post');
@@ -46,21 +74,23 @@ router.get('/:id', (req, res) => {
 // @route   POST api/posts
 // @desc    Create post
 // @access  Private
-router.post(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-
-    // Check Validation
+router.post('/', passport.authenticate('jwt', { session: false }), upload.single('postImage'), (req, res, next) => {
+  const { errors, isValid } = validatePostInput(req.body);
+    
+  console.log('Got Request')
+  console.log(req.file)
+  
+  // Check Validation
     if (!isValid) {
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
-    }
+    }  
 
+    console.log(req.body);
     const newPost = new Post({
       text: req.body.text,
       name: req.body.name,
+      postImage: req.file.path,
       avatar: req.body.avatar,
       user: req.user.id
     });
