@@ -15,7 +15,7 @@ class PostForm extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.uploadHandler = this.onChange.bind(this);
+    this.uploadHandler = this.uploadHandler.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -24,59 +24,41 @@ class PostForm extends Component {
     }
   }
 
+  uploadHandler(e){   
+    this.setState({
+       postImage: e.target.files[0]
+    });
+    
+   }
+ 
+   onChange(e) { 
+     this.setState({ [e.target.name]: e.target.value });
+   }
+
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
-    
-    let formData = new FormData();
-    formData.append('postImage', this.state.postImage); 
-     
-
-    const newPost = {
-      text: this.state.text,
-      postImage: this.state.postImage,
-      name: user.name,
-      avatar: user.avatar
-    };
-
-
-    console.log(newPost);
-
-    return
+    const { user } = this.props.auth; 
+    const newPost = new FormData();
+    newPost.append('text', this.state.text);
+    newPost.append('postImage', this.state.postImage, this.state.postImage.name); 
+    newPost.append('name', user.name);
+    newPost.append('avatar', user.avatar);
+  
+    // const newPost = {
+    //   text: this.state.text,
+    //   postImage: formData,
+    //   name: user.name,
+    //   avatar: user.avatar
+    // };
 
     this.props.addPost(newPost);
-    this.setState({ text: '' });
+    this.setState({ text: '', postImage: null});
   }
-
-  encodeImageFileAsURL(element) {
-    var file = element.target.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      console.log('RESULT', reader.result)
-      this.setState({
-        postImage: reader.result
-      })
-    }
-    reader.readAsDataURL(file);
-  }
-
-
-  uploadHandler(e){
-   this.setState({
-      postImage: e.target.files[0]
-   });
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+ 
 
   render() {
     const { errors } = this.state;
-
-    let thisPtr = this
-
     return (
       <div> 
       {/* <!-- New Post Modal Trigger --> */}
@@ -114,8 +96,8 @@ class PostForm extends Component {
                               <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
                             </div>
                             <div className="custom-file">
-                              <input type="file" className="custom-file-input" onChange={thisPtr.encodeImageFileAsURL} />
-                              <label className="custom-file-label" >Choose file</label>
+                              <input type="file" className="custom-file-input" name="postImage" onChange={this.uploadHandler}/>
+                              <label className="custom-file-label">Choose file</label>
                             </div>
                           </div>
                           <button type="submit" className="btn btn-dark">
