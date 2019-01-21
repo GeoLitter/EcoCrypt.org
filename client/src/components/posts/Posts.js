@@ -15,23 +15,16 @@ class Posts extends Component {
 
   render() {
     const { posts, loading } = this.props.post; 
-    const { profiles } = this.props.profile;
+    // const { profiles } = this.props.profile;
 
     
      
     let postContent;
-
-    if (posts === null || profiles == null || loading) {
+ 
+    if (posts === null || loading) {
       postContent = <Spinner />;
     } else {  
-      if (profiles.length > 0) { 
-        postContent = profiles.map(profile => (
-        <PostFeed key={profile._id} posts={posts} profile={profile} />
-        
-        ));  
-      } else {
-        console.log("no profiles");
-      }
+        postContent = <PostFeed posts={posts} />   
     }
 
     return (
