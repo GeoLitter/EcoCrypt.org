@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import { deletePost, addLike, removeLike } from '../../actions/postActions';  
 
 
 //adding a comment
-class PostItem extends Component {
+class PostItem extends Component { 
+
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -30,24 +31,29 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
-     
+    const { post, auth, showActions } = this.props;   
+    // console.log(profile.handle); make sure to access profile from props
+    //TODO: Fix bug on why profile is being passed down multiple times, see PostFeed.js for reference
+    //profile.handle works so far, just not when i click the comments link
     return (
-      <div className="card card-body mb-3">
+       
+      <div className="card card-body mb-3" style={{width: "500px", height: "450px"}}>
         <div className="row">
-          <div className="col-md-2">
-            <a href="profile.html">
+        <img className="img-thumbnail rounded" src={post.postImage} alt="" style={{height: "300px"}}/>
+         
+          <div className="col-md-3">
+          <Link to={`${post.name}`}>
               <img
                 className="rounded-circle d-none d-md-block"
                 src={post.avatar}
                 alt=""
+                style={{width: "50px", marginTop: "5px"}}
               />
-            </a>
+            </Link>
             <br />
-          <img src={post.postImage} alt=""/>
             <p className="text-center">{post.name}</p>
           </div>
-          <div className="col-md-10">
+          <div className="col-md-9">
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>
@@ -104,9 +110,9 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth, 
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, {deletePost, addLike, removeLike })(
   PostItem
 );

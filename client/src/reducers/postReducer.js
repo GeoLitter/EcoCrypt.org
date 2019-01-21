@@ -9,7 +9,8 @@ import {
 const initialState = {
   posts: [],
   post: {},
-  loading: false
+  loading: false,
+  postUploadProgress: 0
 };
 
 export default function(state = initialState, action) {
@@ -30,7 +31,7 @@ export default function(state = initialState, action) {
         ...state,
         post: action.payload,
         loading: false
-      };
+      }; 
     case ADD_POST:
       return {
         ...state,

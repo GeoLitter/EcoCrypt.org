@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost } from '../../actions/postActions';
+import { addPost } from '../../actions/postActions'; 
+ 
 
 class PostForm extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class PostForm extends Component {
                               <label className="custom-file-label">Choose file</label>
                             </div>
                           </div>
+                          
                           <button type="submit" className="btn btn-dark">
                             Submit
                           </button>
@@ -109,8 +111,7 @@ class PostForm extends Component {
                   </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Save changes</button>
+                <div>Thanks for supporting Encrypto</div>
               </div>
             </div>
           </div>
