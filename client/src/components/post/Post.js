@@ -15,14 +15,27 @@ class Post extends Component {
 
   render() {
     const { post, loading } = this.props.post;
+     
     let postContent;
 
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
+      console.log(post.postImage, "from post.js")
       postContent = (
         <div>
-          <PostItem post={post} showActions={false} />
+          <img src={`/${post.postImage}`} alt=""/>
+          <img
+            className="rounded-circle d-none d-md-block"
+            src={post.avatar}
+            alt=""
+            style={{width: "50px", marginTop: "5px"}}
+          />
+         <div className="row">
+          
+          <h2 className="col-12">{post.text}</h2>
+         </div>
+          {/* <PostItem post={post} showActions={false} /> */}
           <CommentForm postId={post._id} />
           <CommentFeed postId={post._id} comments={post.comments} />
         </div>

@@ -281,11 +281,13 @@ class CreateProfile extends Component {
                   <span className="text-muted">Optional</span>
                 </div>
                 {socialInputs}
+                {/* <span>Choose Profile Picture </span><input type="file" /> */}
                 <input
                   type="submit"
                   value="Submit"
                   className="btn btn-info btn-block mt-4"
                 />
+
               </form>
             </div>
           </div>

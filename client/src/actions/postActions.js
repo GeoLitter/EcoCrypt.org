@@ -11,12 +11,15 @@ import {
 } from './types';
 
 // Add Post
-export const addPost = postData => dispatch => {
-  console.log(postData);
+export const addPost = postData => dispatch => { 
   dispatch(clearErrors());
   axios
-    .post('/api/posts', postData)
-    .then(res =>
+    .post('/api/posts', postData, {
+      onUploadProgress: progressEvent => {
+        console.log("Upload Progress", Math.round(progressEvent.loaded / progressEvent.total * 100) + '%'); 
+      }
+    })
+    .then(res => 
       dispatch({
         type: ADD_POST,
         payload: res.data
