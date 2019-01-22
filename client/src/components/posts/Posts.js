@@ -29,12 +29,31 @@ class Posts extends Component {
 
     return (
       <div className="feed">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-3">
+            <div className="sticky-top">
+              <div className="jumbotron">
+                <h1>Profile Content</h1>
+              </div>
+              <hr className="my-4"></hr>
+            </div>
+            </div>
+            <div className="col-6" style={{backgroundColor: "#f4f9fc"}}>
               <PostForm />
               <br/>
               {postContent}
+            </div>
+            <div className="col-3">
+            <div className="sticky-top">
+            <div className="jumbotron ">
+                  <h1>Map Content</h1>
+              </div>
+              <hr className="my-4"></hr>
+              <div className="jumbotron ">
+                  <h1>latest news</h1>
+              </div>
+            </div>
             </div>
           </div>
         </div>

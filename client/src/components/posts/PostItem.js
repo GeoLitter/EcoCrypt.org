@@ -37,7 +37,7 @@ class PostItem extends Component {
     //profile.handle works so far, just not when i click the comments link
     return (
        
-      <div className="card card-body mb-3" style={{width: "500px", height: "450px"}}>
+      <div className="card card-body mb-3 mx-auto" style={{width: "500px", height: "450px", boxShadow:"0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"}}>
         <div className="row">
         <img className="img-thumbnail rounded" src={post.postImage} alt="" style={{height: "300px"}}/>
          
