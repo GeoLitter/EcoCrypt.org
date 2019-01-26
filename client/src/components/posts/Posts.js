@@ -16,8 +16,7 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post; 
     // const { profiles } = this.props.profile;
-
-    
+ 
      
     let postContent;
  

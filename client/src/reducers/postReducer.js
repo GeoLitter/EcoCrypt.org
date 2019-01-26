@@ -3,7 +3,8 @@ import {
   GET_POSTS,
   GET_POST,
   DELETE_POST,
-  POST_LOADING
+  POST_LOADING,
+  IMAGE_UPLOAD
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +20,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+    case IMAGE_UPLOAD:
+      return {
+        ...state,
+        postUploadProgress: action.payload
       };
     case GET_POSTS:
       return {
