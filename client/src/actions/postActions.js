@@ -7,7 +7,8 @@ import {
   GET_POSTS,
   GET_POST,
   POST_LOADING,
-  DELETE_POST
+  DELETE_POST, 
+  IMAGE_UPLOAD
 } from './types';
 
 // Add Post
@@ -17,6 +18,10 @@ export const addPost = postData => dispatch => {
     .post('/api/posts', postData, {
       onUploadProgress: progressEvent => {
         console.log("Upload Progress", Math.round(progressEvent.loaded / progressEvent.total * 100) + '%'); 
+        dispatch({
+           type: IMAGE_UPLOAD,
+           payload: Math.round(progressEvent.loaded / progressEvent.total * 100)
+        });
       }
     })
     .then(res => 

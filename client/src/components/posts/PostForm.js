@@ -10,7 +10,8 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      postImage: null,
+      postImage: null, 
+      uploadProgress: 0,
       errors: {}
     };
 
@@ -23,6 +24,10 @@ class PostForm extends Component {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }
+    const { postUploadProgress } = this.props.post;
+    this.setState({
+      uploadProgress: postUploadProgress
+    });
   }
 
   uploadHandler(e){   
@@ -38,6 +43,7 @@ class PostForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    
 
     const { user } = this.props.auth; 
     const newPost = new FormData();
@@ -45,21 +51,24 @@ class PostForm extends Component {
     newPost.append('postImage', this.state.postImage, this.state.postImage.name); 
     newPost.append('name', user.name);
     newPost.append('avatar', user.avatar);
-  
+    
     // const newPost = {
     //   text: this.state.text,
     //   postImage: formData,
     //   name: user.name,
     //   avatar: user.avatar
     // };
-
+  
     this.props.addPost(newPost);
+    
     this.setState({ text: '', postImage: null});
   }
  
 
   render() {
-    const { errors } = this.state;
+    const { errors, uploadProgress } = this.state;  
+    
+    
     return (
       <div> 
       {/* <!-- New Post Modal Trigger --> */}
@@ -101,6 +110,11 @@ class PostForm extends Component {
                               <label className="custom-file-label">Choose file</label>
                             </div>
                           </div>
+                           {/* TODO: Optimpize this progress bar */}
+                           <div className="progress">
+                              <div className="progress-bar" role="progressbar" style={{width: uploadProgress +"%"}} aria-valuenow={uploadProgress} aria-valuemin="0" aria-valuemax="100">{uploadProgress}</div>
+                            </div>
+                            <br/>
                           
                           <button type="submit" className="btn btn-dark">
                             Submit
@@ -129,6 +143,7 @@ PostForm.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  post: state.post,
   errors: state.errors
 });
 
