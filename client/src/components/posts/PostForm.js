@@ -51,7 +51,7 @@ class PostForm extends Component {
     
     this.props.addPost(newPost);    
     
-    this.setState({ text: '', postImage: null});
+    this.setState({ text: '', postImage: null, uploadProgress: 0});
   }
  
 
