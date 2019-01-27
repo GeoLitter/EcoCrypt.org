@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const multer = require('multer');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -119,7 +120,14 @@ router.delete(
           }
 
           // Delete
-          post.remove().then(() => res.json({ success: true }));
+          post.remove().then((post) => {
+            //Deletes Post File Path
+            fs.unlink(post.postImage, (err) => {
+              if(err) throw err;
+              console.log("File Path was Deleted")
+            })
+            res.json({ success: true })
+          });
         })
         .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
     });
