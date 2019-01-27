@@ -10,44 +10,30 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      postImage: null,
-      progressBar: 0,   
+      postImage: null,   
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.uploadHandler = this.uploadHandler.bind(this); 
+    this.uploadHandler = this.uploadHandler.bind(this);
   }
  
- 
+  
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }
-    const { postUploadProgress } = this.props.post; 
-    console.log(postUploadProgress);
-    this.setState({
-       progressBar: postUploadProgress
-    });
   }
-
-  componentDidRecieveProps(){
-    this.setState({
-       progressBar: 0
-    });
-  }
-  
 
   uploadHandler(e){   
     this.setState({
-       postImage: e.target.files[0] 
+       postImage: e.target.files[0]
     });
     
    }
  
- 
-   onChange(e) {  
+   onChange(e) { 
      this.setState({ [e.target.name]: e.target.value });
    }
 
@@ -61,17 +47,17 @@ class PostForm extends Component {
     newPost.append('postImage', this.state.postImage, this.state.postImage.name); 
     newPost.append('name', user.name);
     newPost.append('avatar', user.avatar);
-
-    
    
     
-    this.props.addPost(newPost);     
-    this.setState({ text: '', postImage: null, progressBar: 0}); 
+    this.props.addPost(newPost);    
+    
+    this.setState({ text: '', postImage: null});
   }
- //TODO: Fix bug on progressBar
+ 
 
   render() {
     const { errors } = this.state; 
+    const { postUploadProgress } = this.props.post; 
      
     return (
       <div> 
@@ -116,7 +102,7 @@ class PostForm extends Component {
                           </div>
                           {/* TODO: Optimpize this progress bar */}
                           <div className="progress">
-                              <div className="progress-bar" role="progressbar" style={{width: this.state.progressBar +"%"}} aria-valuenow={this.state.progressBar} aria-valuemin="0" aria-valuemax="100">{this.state.progressBar}</div>
+                              <div className="progress-bar" role="progressbar" style={{width: postUploadProgress +"%"}} aria-valuenow={postUploadProgress} aria-valuemin="0" aria-valuemax="100">{postUploadProgress}</div>
                             </div>
                             <br/>
                           <button type="submit" className="btn btn-dark">
