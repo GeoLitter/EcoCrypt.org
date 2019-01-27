@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup'; 
-import { addPost } from '../../actions/postActions';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import { addPost } from '../../actions/postActions'; 
  
 
 class PostForm extends Component {
@@ -10,7 +10,7 @@ class PostForm extends Component {
     super(props);
     this.state = {
       text: '',
-      postImage: null,   
+      postImage: null,
       errors: {}
     };
 
@@ -18,8 +18,7 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.uploadHandler = this.uploadHandler.bind(this);
   }
- 
-  
+
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
@@ -40,25 +39,27 @@ class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;  
-     
+    const { user } = this.props.auth; 
     const newPost = new FormData();
     newPost.append('text', this.state.text);
     newPost.append('postImage', this.state.postImage, this.state.postImage.name); 
     newPost.append('name', user.name);
     newPost.append('avatar', user.avatar);
-   
-    
-    this.props.addPost(newPost);    
-    
-    this.setState({ text: '', postImage: null, uploadProgress: 0});
+  
+    // const newPost = {
+    //   text: this.state.text,
+    //   postImage: formData,
+    //   name: user.name,
+    //   avatar: user.avatar
+    // };
+
+    this.props.addPost(newPost);
+    this.setState({ text: '', postImage: null});
   }
  
 
   render() {
-    const { errors } = this.state; 
-    const { postUploadProgress } = this.props.post; 
-     
+    const { errors } = this.state;
     return (
       <div> 
       {/* <!-- New Post Modal Trigger --> */}
@@ -100,11 +101,7 @@ class PostForm extends Component {
                               <label className="custom-file-label">Choose file</label>
                             </div>
                           </div>
-                          {/* TODO: Optimpize this progress bar */}
-                          <div className="progress">
-                              <div className="progress-bar" role="progressbar" style={{width: postUploadProgress +"%"}} aria-valuenow={postUploadProgress} aria-valuemin="0" aria-valuemax="100">{postUploadProgress}</div>
-                            </div>
-                            <br/>
+                          
                           <button type="submit" className="btn btn-dark">
                             Submit
                           </button>
@@ -125,17 +122,14 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired,  
+  addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors,
-  post: state.post
+  errors: state.errors
 });
 
- 
-
-export default connect(mapStateToProps, { addPost})(PostForm);
+export default connect(mapStateToProps, { addPost })(PostForm);

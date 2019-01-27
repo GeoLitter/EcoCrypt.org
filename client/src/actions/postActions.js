@@ -7,8 +7,7 @@ import {
   GET_POSTS,
   GET_POST,
   POST_LOADING,
-  DELETE_POST,
-  IMAGE_UPLOAD
+  DELETE_POST
 } from './types';
 
 // Add Post
@@ -16,8 +15,8 @@ export const addPost = postData => dispatch => {
   dispatch(clearErrors());
   axios
     .post('/api/posts', postData, {
-      onUploadProgress: progressEvent => { 
-        dispatch(uploadingImage(Math.round(progressEvent.loaded / progressEvent.total * 100)));
+      onUploadProgress: progressEvent => {
+        console.log("Upload Progress", Math.round(progressEvent.loaded / progressEvent.total * 100) + '%'); 
       }
     })
     .then(res => 
@@ -159,13 +158,6 @@ export const setPostLoading = () => {
     type: POST_LOADING
   };
 };
-
-export const uploadingImage = (timeProgress) => {
-  return{
-    type: IMAGE_UPLOAD,
-    payload: timeProgress
-  };
-}
 
 // Clear errors
 export const clearErrors = () => {
