@@ -9,7 +9,9 @@ class Observations extends Component {
                 <div className="row">
                     <Search/>
                 </div> 
-                   <Map/> 
+                <div>
+                     <Map/> 
+                </div>
             </div>
         );
     }

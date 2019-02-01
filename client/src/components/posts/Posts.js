@@ -6,6 +6,7 @@ import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions'; 
 import { getProfiles } from '../../actions/profileActions';
+import Maps from '../observations/Maps';
 
 class Posts extends Component {
   componentDidMount() {
@@ -39,15 +40,15 @@ class Posts extends Component {
               <hr className="my-4"></hr>
             </div>
             </div>
-            <div className="col-6" style={{backgroundColor: "#f4f9fc"}}>
+            <div className="col-5" style={{backgroundColor: "#f4f9fc"}}>
               <PostForm />
               <br/>
               {postContent}
             </div>
-            <div className="col-3">
+            <div className="col-4">
             <div className="sticky-top">
             <div className="jumbotron ">
-                  <h1>Map Content</h1>
+                 <Maps style={{position: "relative", margin: "0", padding: "0"}}/>
               </div>
               <hr className="my-4"></hr>
               <div className="jumbotron ">

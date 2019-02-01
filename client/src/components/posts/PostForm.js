@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions'; 
+import GeoLocation from '../common/geolocated';
  
 
 class PostForm extends Component {
@@ -115,7 +116,7 @@ class PostForm extends Component {
                               <div className="progress-bar" role="progressbar" style={{width: uploadProgress +"%"}} aria-valuenow={uploadProgress} aria-valuemin="0" aria-valuemax="100">{uploadProgress}</div>
                             </div>
                             <br/>
-                          
+                          <GeoLocation/>
                           <button type="submit" className="btn btn-dark">
                             Submit
                           </button>

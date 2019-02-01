@@ -13,7 +13,7 @@ class Search extends Component {
                     <input type="text" className="form-control" placeholder="Location"/>
                     </div>
                     <div className="col-3">
-                    <button type="submit" className="btn btn-primary mb-2">Submit</button>
+                    <button type="submit" className="btn btn-primary mb-2">Search</button>
                     </div>
                 </div>
              </form>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { relative } from "path";
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export class MapContainer extends Component {
     };
   }
   onMarkerClick(props, marker, e) {
+    console.log(props);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -24,24 +26,25 @@ export class MapContainer extends Component {
     }
 
     return (
-      <div className="container">
+      <div className="container" style={{position: "relative"}}>
         <Map
           style={{ 
-            width: "900px", 
-            height: "500px",
-            minWwidth: "200px",
-            minHeight: "200px"
+            position: "relative",
+            padding: "0",
+            margin: "0 auto",
+            width: "100%", 
+            height: "500px"
           }}
           google={this.props.google}
-          zoom={14}
+          // initialCenter={{
+          //   lat: 17.17277,
+          //   lng: -89.11276
+          // }}  
+          zoom={15}
         >
           <Marker
             onClick={this.onMarkerClick}
-            // icon={{
-            //   url: "/img/icon.svg",
-            //   anchor: new google.maps.Point(32, 32),
-            //   scaledSize: new google.maps.Size(64, 64)
-            // }}
+            
             name={"Current location"}
           />
           <InfoWindow
