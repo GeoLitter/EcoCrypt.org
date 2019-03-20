@@ -1,4 +1,4 @@
-# Encrypto
+# EcoCrypt.org
 
 > Small social network to help enforce environmental laws
 
