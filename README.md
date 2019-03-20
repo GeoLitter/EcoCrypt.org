@@ -1,10 +1,6 @@
 # Encrypto
 
-<<<<<<< HEAD
-> Small social network app built to connect environmentalist and concern citizens to help enforce environmental laws
-=======
 > Small social network to help enforce environmental laws
->>>>>>> develop
 
 ## Quick Start
 

@@ -17,7 +17,7 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Encrypto</h1>
+                <h1 className="display-3 mb-4">EcoCrypt</h1>
                 <p className="lead">
                   {' '}
                   Create a Researcher profile/portfolio, share posts and help report illegal environmental activities.
@@ -29,6 +29,15 @@ class Landing extends Component {
                 <Link to="/login" className="btn btn-lg btn-light">
                   Login
                 </Link>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12 text-center">
+              <hr />
+              <hr />
+                <a rel="noopener noreferrer" href="https://github.com/lmanzanero/EcoCrypt.org" target="_blank" className="btn btn-lg btn-dark mr-2">
+                    <span className="fab fa-github"></span>  Contribute on GitHub
+                  </a>
               </div>
             </div>
           </div>
