@@ -6,6 +6,12 @@ img {
   width: 100%;
 }
 
+.main-logo {
+  width: 40px;
+  padding: 0;
+  margin: 0;
+}
+
 .landing {
   position: relative;
   background: url("./img/showcase.jpeg") no-repeat;

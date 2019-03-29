@@ -65,7 +65,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            EcoCrypt
+            <img className="main-logo" src="/logo_transparent.png" alt="EcoCrypt Logo" />
           </Link>
           <button
             className="navbar-toggler"
