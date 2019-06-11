@@ -71,6 +71,7 @@ class App extends Component {
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/observations" component={Observations} />
+              <Route exact path="/feed" component={Posts} />
               <Route exact path="/news" component={Blog} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -103,9 +104,9 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
-              <Switch>
+              {/* <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
-              </Switch>
+              </Switch> */}
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
