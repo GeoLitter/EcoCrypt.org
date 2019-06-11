@@ -25,8 +25,9 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import Observations from './components/observations/Observations';
+import Blog from './components/blog/blog';
 import NotFound from './components/not-found/NotFound';
-
+import Helmet from 'react-helmet';
 import './App.css';
 
 // Check for token
@@ -56,6 +57,12 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
+            <Helmet>
+                   <meta charSet="utf-8" />
+                   <title>EcoCrypt: A social network to enforce environmental laws </title> 
+                   <meta name="Description" content="EcoCrypt.org is a social network that allows concerned citizens to report and collect data concerning illegal enviornmental activities to their appropriate departments"/>
+                    <meta name="Keywords" content="ecocrypt, eco-crypt, ecocrypt.org, EcoCrypt.org, environment, environmental science, environmental social network, environmental protection, environmental policy"/>
+            </Helmet>
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container-fluid">
@@ -64,6 +71,7 @@ class App extends Component {
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/observations" component={Observations} />
+              <Route exact path="/news" component={Blog} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profileActions';
+import { Helmet } from 'react-helmet';
 
 class Profiles extends Component {
   componentDidMount() {
@@ -32,6 +33,11 @@ class Profiles extends Component {
 
     return (
       <div className="profiles">
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Profiles | EcoCrypt.org</title> 
+            <meta name="description" content="See all EcoCrypt contributors who help empower those who report illegal environmental activities" />
+         </Helmet>
         <div className="container">
           <div className="row">
             <div className="col-md-12">

@@ -8,6 +8,7 @@ import ProfileCreds from './ProfileCreds';
 import ProfileGithub from './ProfileGithub';
 import Spinner from '../common/Spinner';
 import { getProfileByHandle } from '../../actions/profileActions';
+import { Helmet } from 'react-helmet';
 
 class Profile extends Component {
   componentDidMount() {
@@ -32,6 +33,11 @@ class Profile extends Component {
       profileContent = (
         <div>
           <div className="row">
+          <Helmet>
+                <meta charSet="utf-8" />
+                <title>{`${profile.user.name} | EcoCrypt.org`}</title> 
+                <meta name="description" content={`${profile.status} at ${profile.company}`} />
+          </Helmet>
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles

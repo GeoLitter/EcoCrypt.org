@@ -89,6 +89,11 @@ class Navbar extends Component {
                   Community
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/news">
+                  News
+                </Link>
+              </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
