@@ -17,6 +17,7 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post; 
     const { profiles } = this.props.profile;
+    const { isAuthenticated } = this.props.auth;
 
    
      
@@ -43,7 +44,7 @@ class Posts extends Component {
             </div>
             </div>
             <div className="col-5" style={{backgroundColor: "#f4f9fc"}}>
-              <PostForm />
+            {isAuthenticated ? <PostForm /> : null}
               <br/>
               {postContent}
             </div>
@@ -69,12 +70,14 @@ Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   post: state.post,
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, {getProfiles, getPosts })(Posts);
