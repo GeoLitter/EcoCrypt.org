@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { Helmet } from 'react-helmet';
 
 class Register extends Component {
   constructor() {
@@ -51,12 +52,17 @@ class Register extends Component {
 
     return (
       <div className="register">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Register | EcoCrypt.org</title> 
+          <meta name="Description" content="Register and become part of the EcoCrypt community, enforcing our enviornmental laws with every post"/>
+        </Helmet>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">
-                Create your Encrypto account
+                Create your EcoCrypt account
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup

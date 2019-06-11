@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { Helmet } from 'react-helmet';
 
 class Login extends Component {
   constructor() {
@@ -50,12 +51,17 @@ class Login extends Component {
 
     return (
       <div className="login">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Login | EcoCrypt.org</title> 
+          <meta name="Description" content="Login and stay updated with latest of EcoCrypt community"/>
+        </Helmet>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">
-                Sign in to your Encrypto account
+                Sign in to your Ecocrypt account
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
