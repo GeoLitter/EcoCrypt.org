@@ -1,4 +1,6 @@
-# EcoCrypt.org
+# EcoCrypt.org 
+
+![EcoCrypt Logo](http://www.ecocrypt.org/favicon.png)
 
 > Small social network to help enforce environmental laws
 
