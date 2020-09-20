@@ -34,7 +34,7 @@ class Posts extends Component {
     return (
       <div className="feed">
         <div className="container-fluid">
-          <div className="row">
+          <div className="row mt-4">
             <div className="col-3">
             <div className="sticky-top">
               <div className="jumbotron">
@@ -51,7 +51,7 @@ class Posts extends Component {
             <div className="col-4">
             <div className="sticky-top">
             <div className="jumbotron ">
-                 <Maps style={{position: "relative", margin: "0", padding: "0"}}/>
+                 {/* <Maps style={{position: "relative", margin: "0", padding: "0"}}/> */}
               </div>
               <hr className="my-4"></hr>
               <div className="jumbotron ">

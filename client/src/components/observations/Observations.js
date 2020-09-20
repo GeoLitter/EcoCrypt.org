@@ -17,7 +17,7 @@ class Observations extends Component {
                     <Search/>
                 </div> 
                 <div>
-                     <Map/> 
+                     {/* <Map/>  */}
                 </div>
             </div>
         );

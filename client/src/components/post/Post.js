@@ -24,7 +24,7 @@ class Post extends Component {
       console.log(post.postImage, "from post.js")
       postContent = (
         <div>
-          <img src={`/${post.postImage}`} alt=""/>
+          <img style={{width: "50%", height: '50%', objectFit: 'cover'}} src={`/${post.postImage}`} alt=""/>
           <img
             className="rounded-circle d-none d-md-block"
             src={post.avatar}

@@ -18,25 +18,28 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+         
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
         </li>
-        <li className="nav-item">
-          <a
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
+        <li className="nav-item dropdown">
+            <a  
+              className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
             <img
               className="rounded-circle"
               src={user.avatar}
               alt={user.name}
               style={{ width: '25px', marginRight: '5px' }}
               title="You must have a Gravatar connected to your email to display an image"
-            />{' '}
-            Logout
+            /> 
           </a>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a className="dropdown-item" href="#">Dashboard</a>
+              <a className="dropdown-item" href="#">Settings</a>
+              <a className="dropdown-item" href="" onClick={this.onLogoutClick.bind(this)}>Logout</a>
+            </div>
         </li>
       </ul>
     );
@@ -57,7 +60,7 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img className="main-logo" src="/logo_transparent.png" alt="EcoCrypt Logo" />

@@ -39,9 +39,9 @@ class Profile extends Component {
                 <meta name="description" content={`${profile.status} at ${profile.company}`} />
           </Helmet>
             <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+              {/* <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
-              </Link>
+              </Link> */}
             </div>
             <div className="col-md-6" />
           </div>

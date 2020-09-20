@@ -5,24 +5,23 @@ import { connect } from 'react-redux';
 
 class Landing extends Component {
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
-    }
+    // if (this.props.auth.isAuthenticated) {
+    //   this.props.history.push('/dashboard');
+    // }
   }
 
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
+        <div className="dark-overlay landing-inner text-dark">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">EcoCrypt</h1>
-                <p className="lead">
-                  {' '}
+              <div className="col-md-12 text-center"> 
+                <img style={{width: 150, marginTop: '3em'}} src="/logo_transparent.png"/> 
+                <p className="lead"> 
                   Create a Researcher profile/portfolio, share posts and help report illegal environmental activities.
                 </p>
-                <hr />
+                <br/>
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
                 </Link>
@@ -32,9 +31,9 @@ class Landing extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12 text-center">
-              <hr />
-              <hr />
+              <div className="col-md-12 text-center"> 
+              <br/>
+              <br/>
                 <a rel="noopener noreferrer" href="https://github.com/lmanzanero/EcoCrypt.org" target="_blank" className="btn btn-lg btn-dark mr-2">
                     <span className="fab fa-github"></span>  Contribute on GitHub
                   </a>
