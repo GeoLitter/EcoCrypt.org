@@ -6,7 +6,7 @@ import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions'; 
 import { getProfiles } from '../../actions/profileActions';
-import Maps from '../observations/Maps';
+// import Maps from '../observations/Maps';
 
 class Posts extends Component {
   componentDidMount() {
@@ -35,9 +35,9 @@ class Posts extends Component {
       <div className="feed">
         <div className="container-fluid">
           <div className="row mt-4">
-            <div className="col-3">
+            <div className="col-3 hidden-xs-down">
             <div className="sticky-top">
-              <div className="jumbotron">
+              <div className="jumbotron hidden-xs-down">
                 <h1>Profile Content</h1>
               </div>
               <hr className="my-4"></hr>
@@ -48,7 +48,7 @@ class Posts extends Component {
               <br/>
               {postContent}
             </div>
-            <div className="col-4">
+            <div className="col-4 hidden-xs-down">
             <div className="sticky-top">
             <div className="jumbotron ">
                  {/* <Maps style={{position: "relative", margin: "0", padding: "0"}}/> */}

@@ -31,7 +31,7 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;     
+    const { post, auth, showActions } = this.props;    
     // console.log(profile.handle); make sure to access profile from props
     //TODO: Fix bug on why profile is being passed down multiple times, see PostFeed.js for reference
     //profile.handle works so far, just not when i click the comments link
@@ -42,7 +42,7 @@ class PostItem extends Component {
         <img className="img-thumbnail rounded" src={post.postImage} alt="" style={{height: "300px"}}/>
          
           <div className="col-md-3">
-          <Link to={`${post.name}`}>
+          <Link to={`/profile/${post.name}`}>
               <img
                 className="rounded-circle d-none d-md-block"
                 src={post.avatar}

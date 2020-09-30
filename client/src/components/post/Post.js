@@ -23,21 +23,27 @@ class Post extends Component {
     } else {
       console.log(post.postImage, "from post.js")
       postContent = (
-        <div>
-          <img style={{width: "50%", height: '50%', objectFit: 'cover'}} src={`/${post.postImage}`} alt=""/>
-          <img
-            className="rounded-circle d-none d-md-block"
-            src={post.avatar}
-            alt=""
-            style={{width: "50px", marginTop: "5px"}}
-          />
-         <div className="row">
-          
-          <h2 className="col-12">{post.text}</h2>
-         </div>
-          {/* <PostItem post={post} showActions={false} /> */}
-          <CommentForm postId={post._id} />
-          <CommentFeed postId={post._id} comments={post.comments} />
+        <div className="row">
+        <div className="col-md-6">
+          <img style={{width: "100%", height: '100%', objectFit: 'container'}} src={`/${post.postImage}`} alt=""/>
+        </div>
+         <div className="col-md-6">
+            <div className="row">
+              <div className="col-md-2">
+                  <img
+                      className="rounded-circle d-none d-md-block"
+                      src={post.avatar}
+                      alt="" 
+                    />
+              </div>
+              <h4 className="col-md-10">{post.text}</h4>
+            </div>
+            {/* <PostItem post={post} showActions={false} /> */}
+            <br/>
+            <CommentForm postId={post._id} />
+            <br/>
+            <CommentFeed postId={post._id} comments={post.comments} />
+            </div>
         </div>
       );
     }

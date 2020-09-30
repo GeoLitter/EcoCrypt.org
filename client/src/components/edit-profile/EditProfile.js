@@ -15,6 +15,7 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: '',
+      profileImg: '',
       company: '',
       website: '',
       location: '',
@@ -77,7 +78,8 @@ class CreateProfile extends Component {
       // Set component fields state
       this.setState({
         handle: profile.handle,
-        company: profile.company,
+        company: profile.company, 
+        profileImg: profile.profileImg,
         website: profile.website,
         location: profile.location,
         status: profile.status,
@@ -94,11 +96,11 @@ class CreateProfile extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
-
+    e.preventDefault(); 
     const profileData = {
       handle: this.state.handle,
-      company: this.state.company,
+      company: this.state.company, 
+      profileImg: this.state.profileImg,
       website: this.state.website,
       location: this.state.location,
       status: this.state.status,
@@ -109,21 +111,19 @@ class CreateProfile extends Component {
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
+      instagram: this.state.instagram,
     };
 
     this.props.createProfile(profileData, this.props.history);
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }); 
   }
 
   render() {
     const { errors, displaySocialInputs } = this.state;
-
     let socialInputs;
-
     if (displaySocialInputs) {
       socialInputs = (
         <div>
@@ -206,6 +206,14 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder="Img Url"
+                  name="profileImg"
+                  value={this.state.profileImg}
+                  onChange={this.onChange}
+                  error={errors.profileImg}
+                  info="Paste Url from anywhere"
                 />
                 <SelectListGroup
                   placeholder="Status"

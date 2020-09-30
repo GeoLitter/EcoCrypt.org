@@ -45,7 +45,6 @@ router.get(
 // @access  Public
 router.get('/all', (req, res) => {
   const errors = {};
-
   Profile.find()
     .populate('user', ['name', 'avatar'])
     .then(profiles => {
@@ -102,6 +101,22 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 // @route   POST api/profile
+// @desc    Update User Picture 
+// @access  Private
+
+router.post('/avatar', passport.authenticate('jwt', { session: false })), (req, res) => {
+     const avatar = {};
+     User.findOne({ user: req.user.id }).then(user => {
+      if (profile) {
+        User.findOneAndUpdate(
+          { user: req.user.id },
+          {avatar: avatar}
+        ).then(profile => res.json(profile))
+      }
+    });
+}
+
+// @route   POST api/profile
 // @desc    Create or edit user profile
 // @access  Private
 router.post(
@@ -121,6 +136,7 @@ router.post(
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.company) profileFields.company = req.body.company;
+    if (req.body.profileImg) profileFields.profileImg = req.body.profileImg;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.bio) profileFields.bio = req.body.bio;

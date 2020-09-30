@@ -49,7 +49,8 @@ router.get('/test', (req, res) => res.json({ msg: 'Posts Works' }));
 // @desc    Get posts
 // @access  Public
 router.get('/', (req, res) => {
-  Post.find()
+  Post.find() 
+    .populate('profile', ['skills'])
     .sort({ date: -1 })
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
@@ -59,7 +60,7 @@ router.get('/', (req, res) => {
 // @desc    Get post by id
 // @access  Public
 router.get('/:id', (req, res) => {
-  Post.findById(req.params.id)
+  Post.findById(req.params.id) 
     .then(post => {
       if (post) {
         res.json(post);
@@ -111,6 +112,7 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.id)
+        .populate('profile', ['profileImg'])
         .then(post => {
           // Check for post owner
           if (post.user.toString() !== req.user.id) {
@@ -142,7 +144,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
+      Post.findById(req.params.id) 
         .then(post => {
           if (
             post.likes.filter(like => like.user.toString() === req.user.id)

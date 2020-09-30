@@ -14,10 +14,7 @@ class Profiles extends Component {
   render() {
     const { profiles, loading } = this.props.profile;
 
-  
-    
     let profileItems;
-
 
     if (profiles === null || loading) {
       profileItems = <Spinner />;
@@ -45,7 +42,9 @@ class Profiles extends Component {
               <p className="lead text-center">
                 Browse and connect with concern Citizens
               </p>
-              {profileItems}
+             <div className="row">
+               {profileItems}
+             </div>
             </div>
           </div>
         </div>
