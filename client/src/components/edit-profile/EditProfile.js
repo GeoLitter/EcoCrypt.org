@@ -197,6 +197,13 @@ class CreateProfile extends Component {
                 Go Back
               </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
+              <div class="avatar-wrapper">
+                <img class="profile-pic" src={this.state.profileImg} />
+                <div class="upload-button">
+                  <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                </div>
+                <input class="file-upload" type="file" accept="image/*"/>
+              </div>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
